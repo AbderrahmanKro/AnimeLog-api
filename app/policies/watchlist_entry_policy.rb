@@ -13,4 +13,9 @@ class WatchlistEntryPolicy < ApplicationPolicy
     # Only the user who created the watchlist entry can update it
     record.user == user
   end
+
+  def destroy?
+    # Only the user who created the watchlist entry can destroy it
+    record.user == user
+  end
 end
