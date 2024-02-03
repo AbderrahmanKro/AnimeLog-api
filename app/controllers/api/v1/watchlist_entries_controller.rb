@@ -1,9 +1,10 @@
 class Api::V1::WatchlistEntriesController < Api::V1::BaseController
+  skip_before_action :verify_authenticity_token
+  acts_as_token_authentication_handler_for User, except: [ :index, :show ]
   before_action :set_watchlist_entry, only: [:show, :update, :destroy]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    current_user = User.first
     @watchlist_entries = current_user.watchlist_entries
   end
 
@@ -39,6 +40,7 @@ class Api::V1::WatchlistEntriesController < Api::V1::BaseController
   end
 
   def watchlist_entry_params
+    current_user = User.last
     params.require(:watchlist_entry).permit(:user_id, :anime_id)
   end
 
