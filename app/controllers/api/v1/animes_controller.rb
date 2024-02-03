@@ -1,5 +1,6 @@
-class Api::v1::AnimesController < Api::v1::BaseController
+class Api::V1::AnimesController < Api::V1::BaseController
   before_action :set_anime, only: [:show]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     @animes = Anime.all
