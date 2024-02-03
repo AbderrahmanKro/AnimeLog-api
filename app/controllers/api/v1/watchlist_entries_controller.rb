@@ -3,7 +3,7 @@ class Api::V1::WatchlistEntriesController < Api::V1::BaseController
   before_action :set_watchlist_entry, only: [:show, :update, :destroy]
 
   def index
-    @watchlist_entries = policy_scope(current_user.watchlist_entries)
+    @watchlist_entries = policy_scope(WatchlistEntry)
   end
 
     def show
@@ -38,11 +38,11 @@ class Api::V1::WatchlistEntriesController < Api::V1::BaseController
   private
 
   def set_watchlist_entry
-    @watchlist_entry = current_user.watchlist_entries.find(params[:id])
+    @watchlist_entry = WatchlistEntry.find(params[:id])
   end
 
   def watchlist_entry_params
-    params.require(:watchlist_entry).permit(:user_id, :anime_id)
+    params.require(:watchlist_entry).permit(:user_id, :anime_id, :status)
   end
 
   def render_error
