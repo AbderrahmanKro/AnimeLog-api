@@ -29,6 +29,8 @@ gem "jbuilder"
 
 gem 'simple_token_authentication'
 
+gem "pundit"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
