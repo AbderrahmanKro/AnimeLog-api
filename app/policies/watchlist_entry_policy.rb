@@ -10,6 +10,7 @@ class WatchlistEntryPolicy < ApplicationPolicy
   end
 
   def update?
+    # Only the user who created the watchlist entry can update it
     record.user == user
   end
 end
